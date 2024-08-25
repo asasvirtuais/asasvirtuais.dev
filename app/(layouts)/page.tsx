@@ -1,5 +1,27 @@
-import { Center, SimpleGrid, GridItem, GridItemProps } from '@chakra-ui/react'
+import { Center, SimpleGrid, GridItem, GridItemProps, Card } from '@chakra-ui/react'
 import Navbar from './navbar'
+import og from '@/public/images/clouds.jpg'
+
+import type { Metadata } from 'next/types'
+
+export const metadata: Metadata = {
+    title: 'asasvirtuais.dev',
+    description: 'Web Development platform',
+    openGraph: {
+        type: 'website',
+        url: 'https://asasvirtuais.dev',
+        title: 'asasvirtuais.dev',
+        description: 'Web Development platform',
+        images: [
+            {
+                url: og.src,
+                width: 1366,
+                height: 768,
+                alt: 'Icaro Asas Virtuais',
+            },
+        ],
+    },
+}
 
 const CardItem = ({ title, ...props }: { title: string } & GridItemProps) => (
     <GridItem
