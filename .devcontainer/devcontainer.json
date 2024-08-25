@@ -1,0 +1,19 @@
+{
+	"name": "@asasvirtuais/devcontainer",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:20-bookworm",
+	"features": {
+		"ghcr.io/devcontainers/features/github-cli:1": {
+			// Defaults
+			"installDirectlyFromGitHubRelease": true,
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers-contrib/features/vercel-cli:1": {
+			// Defaults
+			"version": "latest"
+		}
+	},
+	"forwardPorts": [
+		3000
+	],
+	"postCreateCommand": "pnpm install"
+}
