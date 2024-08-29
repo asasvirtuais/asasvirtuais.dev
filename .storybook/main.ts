@@ -2,18 +2,17 @@ import type { StorybookConfig } from '@storybook/nextjs'
 
 const config: StorybookConfig = {
   stories: [
-    '../**/*/story.tsx',
+    '../app/components/flicker/story.tsx',
   ],
   addons: [
-    '@storybook/addon-onboarding',
-    '@storybook/addon-links',
+    // '@storybook/addon-onboarding',
+    // '@storybook/addon-links',
     '@storybook/addon-essentials',
-    '@chromatic-com/storybook',
-    '@storybook/addon-interactions',
+    // '@chromatic-com/storybook',
+    // '@storybook/addon-interactions',
     '@chakra-ui/storybook-addon'
   ],
   features: {
-    // @ts-expect-error
     emotionAlias: false,
   },
   framework: {
@@ -25,6 +24,6 @@ const config: StorybookConfig = {
     '@chakra-ui/react': {
       disable: true,
     },
-  }
+  },
 }
 export default config
