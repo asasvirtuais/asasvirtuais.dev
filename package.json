@@ -6,7 +6,8 @@
     "build": "next build",
     "start": "next start",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybuild": "storybook build -o ./public/stories",
+    "postinstall": "storybook build -o ./public/stories"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.5.0",

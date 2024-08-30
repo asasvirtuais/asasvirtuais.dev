@@ -13,6 +13,7 @@ const config: StorybookConfig = {
     '@chakra-ui/storybook-addon'
   ],
   features: {
+    // @ts-expect-error
     emotionAlias: false,
   },
   framework: {
@@ -24,6 +25,6 @@ const config: StorybookConfig = {
     '@chakra-ui/react': {
       disable: true,
     },
-  },
+  }
 }
 export default config
