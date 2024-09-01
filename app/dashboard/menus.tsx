@@ -15,7 +15,8 @@ export const AppNav = (props: Omit<StackNavProps, 'children'>) => (
 )
 export const AppMenu = (props: Omit<StackMenuProps, 'children'>) => (
     <HMenu {...props}>
-        <MenuItem variant='solid' colorScheme='gray' >Logout</MenuItem>
+        <MenuItem
+            colorScheme='gray' variant='solid' rounded='none'>Logout</MenuItem>
     </HMenu>
 )
 export const SideNav = (props: Omit<StackNavProps, 'children'>) => (
