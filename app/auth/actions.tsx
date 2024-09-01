@@ -11,11 +11,12 @@ type Claims = {
     email_verified: boolean
 }
 
-export const userOrLogin = cache(async (returnTo: string) => {
-    console.log('run me once')
-    const session = await getSession()
-    const user = session?.user
-    if (!user)
-        redirect(`/api/auth/login?returnTo=${returnTo}`, RedirectType.push)
-    return user as Claims
-})
+export const userOrLogin = cache(
+    async (returnTo: string) => {
+        const session = await getSession()
+        const user = session?.user
+        if (!user)
+            redirect(`/api/auth/login?returnTo=${returnTo}`, RedirectType.push)
+        return user as Claims
+    }
+)
