@@ -1,12 +1,5 @@
-import { Grid, GridItem, GridItemProps, VStack } from '@chakra-ui/react'
-
-import { Divider } from '@chakra-ui/react'
-import { Container } from './container'
-
+import { Grid, GridItem, GridItemProps } from '@chakra-ui/react'
 import { ContainerProps } from '@chakra-ui/react'
-import { AppNav, AppMenu, SideNav, SideMenu, ActionMenu } from './menus'
-import { PropsWithChildren } from 'react'
-import Aside from './aside'
 
 const Header = (props: GridItemProps) => (
     <GridItem as='header'
@@ -14,6 +7,9 @@ const Header = (props: GridItemProps) => (
         py={2}
         {...props} />
 )
+
+import { Container } from './container'
+
 const Navbar = (props: ContainerProps) => (
     <Container
         // Alignment
@@ -31,7 +27,16 @@ const Footer = ({ children, ...props }: GridItemProps) => (
         {children}
     </GridItem>
 )
-export default function DashboardLayout({ children }: PropsWithChildren) {
+
+import { PropsWithChildren } from 'react'
+import { Divider } from '@chakra-ui/react'
+import Aside from './aside'
+import { AppNav, AppMenu, SideNav, SideMenu, ActionMenu } from './menus'
+import { userOrLogin } from '@/app/auth/actions'
+
+export default async function DashboardLayout({ children }: PropsWithChildren) {
+    await userOrLogin('/dashboard')
+
     return (
         <Grid
             gridTemplateColumns='auto 1fr'

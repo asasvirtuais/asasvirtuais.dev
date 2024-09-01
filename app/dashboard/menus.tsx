@@ -14,10 +14,13 @@ export const AppNav = (props: Omit<StackNavProps, 'children'>) => (
     </HNav>
 )
 export const AppMenu = (props: Omit<StackMenuProps, 'children'>) => (
-    <HMenu {...props}>
-        <MenuItem
-            colorScheme='gray' variant='solid' rounded='none'>Logout</MenuItem>
-    </HMenu>
+    <HNav {...props}>
+        <NavItem href='/api/auth/logout'>
+            <Button
+                colorScheme='gray' variant='solid' rounded='none'
+            >Logout</Button>
+        </NavItem>
+    </HNav>
 )
 export const SideNav = (props: Omit<StackNavProps, 'children'>) => (
     <StackNav {...props}>
