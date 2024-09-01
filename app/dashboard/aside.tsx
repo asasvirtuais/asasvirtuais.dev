@@ -1,11 +1,11 @@
 'use client'
 import { useMemo } from 'react'
-import { useHash } from 'react-use/esm/useHash'
 import { useIsMobile } from '@/app/hooks/useIsMobile'
 import { Button, Center, GridItem, GridItemProps, Link } from '@chakra-ui/react'
+import useHash from '@/app/hooks/useHash'
 
 const Aside = ({ children, ...props }: GridItemProps) => {
-    const [hash] = useHash()
+    const { hash, removeHash } = useHash()
     const isMobile = useIsMobile()
     const isMobileOpen = useMemo(() => isMobile && hash === '#mobile-sidebar', [isMobile, hash])
     return (
@@ -26,9 +26,13 @@ const Aside = ({ children, ...props }: GridItemProps) => {
                 md: 'relative'
             }} top='0px' left='0px'
             {...props}>
-            <Link href='#' hidden={!isMobileOpen} position='absolute' right='0px'>
-                <Button as={Center} variant='outline' rounded='none' borderLeft='1px' borderBottom='1px'>✖</Button>
-            </Link>
+            <Button
+                as={Center}
+                onClick={removeHash}
+                variant='outline'
+                rounded='none'
+                hidden={!isMobileOpen} position='absolute' right='0px'
+                borderLeft='1px' borderBottom='1px'>✖</Button>
             {children}
         </GridItem>
     )

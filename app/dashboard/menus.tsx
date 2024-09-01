@@ -4,7 +4,7 @@ import { Button, Heading } from '@chakra-ui/react'
 
 export const AppNav = (props: Omit<StackNavProps, 'children'>) => (
     <HNav {...props}>
-        <NavItem href='/' hideBelow='md' >
+        <NavItem href='/' hideBelow='md'>
             <Heading>Asas Virtuais</Heading>
         </NavItem>
         <NavItem href='#mobile-sidebar' hideFrom='md'

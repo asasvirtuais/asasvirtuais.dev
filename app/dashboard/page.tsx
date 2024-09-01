@@ -10,7 +10,6 @@ export default async () => {
                 <Badge>{new Date().toLocaleDateString(undefined, {
                     dateStyle: 'full'
                 })}</Badge>
-
             </Stack>
         </Container>
     )

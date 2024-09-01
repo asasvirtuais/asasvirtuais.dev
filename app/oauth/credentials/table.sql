@@ -12,3 +12,6 @@ CREATE TABLE credentials (
     -- Metadata
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
+
+-- User reference.
+ALTER TABLE credentials ADD COLUMN "user" VARCHAR(255);
