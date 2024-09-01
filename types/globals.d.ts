@@ -1,4 +1,5 @@
 import type { NextRequest, NextResponse } from 'next/server'
+import type { ImageResponse } from 'next/og'
 
 declare global {
     type GenericFn<P = any[], R = any> = (...p: P) => R
@@ -17,7 +18,9 @@ declare global {
     type NextRouteHandler<
         P = {},
         B = any,
-    > = (request: NextRequest, params: { params: P }) => Promise<NextResponse<B>>
+    > = (request: NextRequest, params: { params: P }) => Promise<
+        NextResponse<B> | Response | ImageResponse
+    >
     // Doesn't need to
     type NextRequestHandler<
         P = {},
