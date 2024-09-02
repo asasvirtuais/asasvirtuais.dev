@@ -4,6 +4,7 @@ import { getSession } from '@auth0/nextjs-auth0'
 import { RedirectType, redirect } from 'next/navigation'
 
 type Claims = {
+    sub: string
     nickname: string
     name: string
     email: string

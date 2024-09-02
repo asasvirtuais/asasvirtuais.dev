@@ -5,7 +5,7 @@ import { Stack } from '@chakra-ui/react'
 import useForwardAs from '@/app/hooks/useForwardAs'
 
 export const StackList = forwardRef<ListProps, typeof Stack>(({ as, ...props }, ref) => (
-    <List ref={ref} as={useForwardAs(Stack, as)} styleType='upper-roman' stylePosition='inside'
+    <List ref={ref} as={useForwardAs(Stack, as)}
         {...props} />
 ))
 

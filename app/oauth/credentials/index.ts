@@ -5,11 +5,15 @@ export type Select = Selectable<CredentialsTable>
 
 export interface CredentialsTable {
   id: Generated<string>
-  provider: string
+  // App attributes
+  user: string
+  // Token Data
   access_token: string
   expires_in: number
   refresh_token: string
   scope: string
+  // Metadata
+  provider: string
   created_at: Generated<Date>
 }
 
@@ -32,6 +36,14 @@ export const getById = (id: string) => (
     .selectFrom('credentials').where('id', '=', id)
     .selectAll()
     .executeTakeFirstOrThrow()
+)
+
+export const getByUser = (user: string) => (
+  kysely
+    .selectFrom('credentials')
+    .where('user', '=', user)
+    .selectAll()
+    .execute()
 )
 
 export const replace = (id: string, data: InsertCredential) => (
