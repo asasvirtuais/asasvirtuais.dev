@@ -17,7 +17,7 @@ import type { StoryObj } from '@storybook/react'
 type Story = StoryObj<typeof meta>
 export const Story: Story = {
     render: () => (
-        <Box w='100%' p={8} bg='black'>
+        <Box w='100%' bg='black'>
             <GallerySliderCarouselFlicker />
         </Box>
 

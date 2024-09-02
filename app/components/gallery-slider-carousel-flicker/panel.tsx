@@ -19,6 +19,7 @@ const Panel = forwardRef<Props, 'button'>(({
     return (
         <Card
             ref={ref}
+            mx={1}
             display='flex'
             alignSelf='flex-start'
             rounded='none'
@@ -27,6 +28,7 @@ const Panel = forwardRef<Props, 'button'>(({
             background={background}
             color='white'
             backgroundSize='cover'
+            maxWidth='100%'
             _hover={{
                 outline: '4px solid white',
                 shadow: 'lg',

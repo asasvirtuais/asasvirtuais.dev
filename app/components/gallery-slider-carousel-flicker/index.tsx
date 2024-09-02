@@ -24,8 +24,8 @@ export default function GallerySliderCarouselFlicker({ items = mock }: Props) {
         // 
         wait()
 
-        e.currentTarget.panels.forEach(p => p.setSize({ width: 300 }))
-        e.panel.setSize({ width: 500 })
+        // e.currentTarget.panels.forEach(p => p.setSize({ width: 300 }))
+        // e.panel.setSize({ width: 500 })
         setOpen(e.panel.index)
 
         const timeout = setTimeout(async () => {
@@ -42,7 +42,7 @@ export default function GallerySliderCarouselFlicker({ items = mock }: Props) {
     return (
         <Box sx={{
             '.flicking-camera': {
-                px: 1, gap: 2, my: 12
+                px: 1, my: 12
             }
         }}
             cursor={isLoading ? 'wait' : 'unset'}
