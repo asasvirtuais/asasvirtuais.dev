@@ -3,6 +3,7 @@ import { tokenUrl, clientId, clientSecret, redirectUri } from '@/app/oauth/util'
 import { decodeState } from '@/app/oauth/state'
 import { insert } from '@/app/oauth/credentials'
 import { TokenData } from '@/app/oauth/types'
+import { getSession } from '@auth0/nextjs-auth0'
 
 export const dynamic = 'force-dynamic'
 
@@ -31,6 +32,11 @@ export const GET = handleNextRouteAsync(
     async (req) => {
         const code = req.nextUrl.searchParams.get('code') as string
         const state = req.nextUrl.searchParams.get('state') as string
+        const session = await getSession()
+        const user = session?.user
+
+        if (!user)
+            throw new Error('Amogus')
 
         const { provider, returnTo } = decodeState(state)
 
@@ -38,7 +44,7 @@ export const GET = handleNextRouteAsync(
 
         const token = await exchangeCodeForToken(provider, code)
 
-        const credential = await insert({ provider, ...token })
+        const credential = await insert({ provider, user: user.sub, ...token })
 
         return returnRedirect(url.toString(), credential.id)
     }
