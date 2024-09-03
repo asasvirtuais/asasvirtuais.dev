@@ -20,6 +20,7 @@ const Panel = forwardRef<Props, 'button'>(({
         <Card
             ref={ref}
             mx={1}
+            minH='200px'
             display='flex'
             alignSelf='flex-start'
             rounded='none'

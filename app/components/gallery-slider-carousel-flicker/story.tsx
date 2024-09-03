@@ -20,7 +20,6 @@ export const Story: Story = {
         <Box w='100%' bg='black'>
             <GallerySliderCarouselFlicker />
         </Box>
-
     )
 }
 // export const StateB: Story = {}

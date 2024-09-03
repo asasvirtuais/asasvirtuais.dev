@@ -54,7 +54,6 @@ export default function GallerySliderCarouselFlicker({ items = mock }: Props) {
                 onMoveStart={wait}
                 onMoveEnd={goon}
                 onSelect={onSelect}
-                moveType='strict'
                 preventClickOnDrag
                 preventDefaultOnDrag
                 preventEventsBeforeInit

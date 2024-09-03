@@ -20,5 +20,7 @@
 Weekly Roadmap:
 
 - [X] List user Credentials
+- [ ] Add UI Elements page to Dashboard
+- [ ] 
 - [ ] Homepage AI Chat
 - [ ] Dashboard page AI Chat for users

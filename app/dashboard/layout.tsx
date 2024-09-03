@@ -1,4 +1,4 @@
-import { Grid, GridItem, GridItemProps } from '@chakra-ui/react'
+import { Grid, GridItem, GridItemProps, Stack } from '@chakra-ui/react'
 import { ContainerProps } from '@chakra-ui/react'
 
 const Header = (props: GridItemProps) => (
@@ -36,12 +36,13 @@ import { userOrLogin } from '@/app/auth/actions'
 
 export default async function DashboardLayout({ children }: PropsWithChildren) {
     await userOrLogin('/dashboard')
-
     return (
         <Grid
             gridTemplateColumns='auto 1fr'
             gridTemplateRows='auto 1fr auto'
-            minH='100dvh' bg='#F4F4F4'>
+            minH='100dvh' bg='#F4F4F4'
+            maxW='dvw'
+        >
 
             <Header colSpan={2} bg='#C4C4C4'>
                 <Navbar>
@@ -50,7 +51,9 @@ export default async function DashboardLayout({ children }: PropsWithChildren) {
                 </Navbar>
             </Header>
 
-            <Main colStart={2} colEnd={3} bg='#F4F4F4'>
+            <Main colStart={2} colEnd={3} bg='#F4F4F4'
+                justifyContent='center' alignItems='flex-start'
+                maxW='100%' overflow='hidden' py={6} px={6}>
                 {children}
             </Main>
 
