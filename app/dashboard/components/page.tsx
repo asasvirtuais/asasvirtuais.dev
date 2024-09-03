@@ -1,6 +1,7 @@
-import { Button, Card, CardBody, CardFooter, CardHeader, GridItem, Link, Text, Textarea } from '@chakra-ui/react'
+import { Button, Card, CardBody, CardFooter, CardHeader, GridItem, Text, Textarea } from '@chakra-ui/react'
 import { SimpleGrid } from '@chakra-ui/react'
 import Breadcrumbs from '../breadcrumbs'
+import Link from '@/app/components/link'
 
 const ComponentCard = () => (
     <GridItem as={Card} position='relative'>
