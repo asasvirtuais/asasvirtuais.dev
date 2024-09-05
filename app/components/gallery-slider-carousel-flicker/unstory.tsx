@@ -1,5 +1,4 @@
 import GallerySliderCarouselFlicker from '@/app/components/gallery-slider-carousel-flicker/page'
-import { Box } from '@chakra-ui/react'
 import type { Meta } from '@storybook/react'
 
 const meta = {
