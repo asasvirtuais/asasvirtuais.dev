@@ -48,7 +48,7 @@ export default ({ events = [] }: Props) => {
             bg='black'
             position='relative'
         >
-            <Box flex={1}>
+            <Box flex={1} zIndex={1}>
                 <Flicking
                     ref={panelsRef as any}
                     bound
@@ -64,7 +64,11 @@ export default ({ events = [] }: Props) => {
                     ))}
                 </Flicking>
             </Box>
+            <Box zIndex={2} position='absolute' top={0} right={0} left={0} bottom={0} height='100%' width='100%'
+                background='linear-gradient(0deg, rgba(30,30,30,0.8) 25%, rgba(0,0,0,0) 100%)'
+            />
             <Box position='absolute'
+                zIndex={3}
                 left={0} right={0} bottom={0}
                 width='100%'
                 px={[0]}
