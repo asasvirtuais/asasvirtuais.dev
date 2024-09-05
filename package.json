@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "next dev",
     "lint": "next lint",
-    "build": "storybook build -o ./public/stories && next build",
+    "build": "next build",
     "start": "next start",
     "storybook": "storybook dev -p 6006"
   },
