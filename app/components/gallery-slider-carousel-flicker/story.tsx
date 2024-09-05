@@ -1,4 +1,4 @@
-import GallerySliderCarouselFlicker from '@/app/components/gallery-slider-carousel-flicker'
+import GallerySliderCarouselFlicker from '@/app/components/gallery-slider-carousel-flicker/page'
 import { Box } from '@chakra-ui/react'
 import type { Meta } from '@storybook/react'
 
@@ -17,9 +17,7 @@ import type { StoryObj } from '@storybook/react'
 type Story = StoryObj<typeof meta>
 export const Story: Story = {
     render: () => (
-        <Box w='100%' bg='black'>
-            <GallerySliderCarouselFlicker />
-        </Box>
+        <GallerySliderCarouselFlicker />
     )
 }
 // export const StateB: Story = {}
