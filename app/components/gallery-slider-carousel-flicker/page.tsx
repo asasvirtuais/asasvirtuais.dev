@@ -20,7 +20,7 @@ export default async function () {
         image: r.get('Image')[0].url,
         text: r.get('Description'),
         link: r.get('Link'),
-        date: r.get('Date'),
+        date: (new Date(r.get('Date'))).toLocaleDateString('en-US', { month: 'short', day: '2-digit' }),
     }))
 
     return (
