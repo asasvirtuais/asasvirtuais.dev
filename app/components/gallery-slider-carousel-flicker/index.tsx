@@ -5,7 +5,7 @@ import '@egjs/flicking-plugins/dist/arrow.css'
 import '@egjs/flicking-plugins/dist/pagination.css'
 
 import Flicking, { Plugin, SelectEvent, ViewportSlot } from '@egjs/react-flicking'
-import { Fade, Arrow, Pagination, AutoPlay } from '@egjs/flicking-plugins'
+import { Fade, Arrow, Pagination, AutoPlay, Sync } from '@egjs/flicking-plugins'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import mock from './mock.json'
 import { Box, chakra, Image, AspectRatio, useBoolean, Card, CardHeader, Button, CardBody, CardFooter, Badge, Link } from '@chakra-ui/react'
@@ -23,11 +23,13 @@ type Props = {
 }
 
 export default () => {
-    const ref = useRef<Flicking>()
+    const panelsRef = useRef<Flicking>()
+    const slidesRef = useRef<Flicking>()
 
     const [plugins, setPlugins] = useState<Plugin[]>([])
 
     useEffect(() => {
+        // if (panelsRef.current && slidesRef.current)
         setPlugins([
             new Fade(),
             new Arrow(),
@@ -35,6 +37,20 @@ export default () => {
                 type: 'scroll',
             }),
             new AutoPlay(),
+            new Sync({
+                type: "index",
+                synchronizedFlickingOptions: [
+                    {
+                        flicking: panelsRef.current as any,
+                        isSlidable: true
+                    },
+                    {
+                        flicking: slidesRef.current as any,
+                        isClickable: true,
+                        activeClass: "active"
+                    }
+                ]
+            })
         ])
     }, [])
     const [prevent, { on, off }] = useBoolean()
@@ -46,12 +62,30 @@ export default () => {
     }, [prevent])
 
     return (
-        <Box w='100%' overflow='hidden' sx={{
-            '.flicking-camera': {
-                py: 12
-            }
-        }}>
-            <Flicking ref={ref as any}
+        <Box w='100%' minH='100dvh'
+            display='flex' flexDir='column'
+            sx={{
+                '.flicking-camera': {
+                    py: 12
+                }
+            }}>
+            <Box flex={1}>
+                <Flicking
+                    ref={panelsRef as any}
+                    bound
+                    circular
+                    bounce={30}
+                    panelsPerView={1}
+                >
+                    {mock.map((event) => (
+                        <Box key={event.title}
+                            minH='500px'
+                            backgroundSize='cover'
+                            backgroundImage={event.image} />
+                    ))}
+                </Flicking>
+            </Box>
+            <Flicking ref={slidesRef as any}
                 bound
                 circular
                 moveType='snap'
@@ -62,6 +96,7 @@ export default () => {
                 preventClickOnDrag
                 preventDefaultOnDrag
                 preventEventsBeforeInit
+                bounce={30}
             >
                 {mock.map((event) => (
                     <Box px={1} key={event.title}>
@@ -80,17 +115,17 @@ export default () => {
                                 w='100%' h='100%'
                                 background='rgba(0,0,0,0.5)'>
                                 <CardHeader w='full'>
-                                    <chakra.h3 color='white' fontSize='2xl'>{event.title}</chakra.h3>
+                                    <chakra.h3 color='white' fontSize='xl'>{event.title}</chakra.h3>
                                 </CardHeader>
                             </Box>
                             <CardBody>
                             </CardBody>
                             <CardFooter justifyContent='space-between' alignItems='center'>
                                 {event.date && (
-                                    <Button size='lg' color='white' variant='ghost' colorScheme='whiteAlpha'>{event.date}</Button>
+                                    <Button size='sm' color='white' variant='ghost' colorScheme='whiteAlpha'>{event.date}</Button>
                                 )}
                                 <Link href={event.link}>
-                                    <Button colorScheme='whiteAlpha' size='lg' >See More</Button>
+                                    <Button colorScheme='whiteAlpha' size='sm' >See More</Button>
                                 </Link>
                             </CardFooter>
                         </Card>
