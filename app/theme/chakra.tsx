@@ -20,7 +20,7 @@ const theme = extendTheme({
     }
 })
 
-export default function({ children }: PropsWithChildren) {
+export default function ({ children }: PropsWithChildren) {
     return (
         <ChakraProvider theme={theme}>
             {children}
