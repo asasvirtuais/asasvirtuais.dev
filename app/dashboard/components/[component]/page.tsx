@@ -11,7 +11,7 @@ export default function () {
     return (
         <Stack>
             <Box bg='black'>
-                <GallerySliderCarouselFlicker />
+                {/* <GallerySliderCarouselFlicker /> */}
             </Box>
             <FormControl>
                 <FormLabel>Airtable Access Token</FormLabel>
