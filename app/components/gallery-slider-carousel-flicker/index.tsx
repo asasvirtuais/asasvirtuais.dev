@@ -4,10 +4,10 @@ import '@egjs/react-flicking/dist/flicking.css'
 import '@egjs/flicking-plugins/dist/arrow.css'
 import '@egjs/flicking-plugins/dist/pagination.css'
 
-import Flicking, { Plugin, SelectEvent, ViewportSlot } from '@egjs/react-flicking'
+import Flicking, { Plugin, ViewportSlot } from '@egjs/react-flicking'
 import { Fade, Arrow, Pagination, AutoPlay, Sync } from '@egjs/flicking-plugins'
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { Box, chakra, useBoolean, Card, CardHeader, Button, CardBody, CardFooter, Link, Badge } from '@chakra-ui/react'
+import { useEffect, useRef, useState } from 'react'
+import { Box, chakra, Text, Card, CardHeader, Button, CardBody, CardFooter, Link, Badge, Container, Stack } from '@chakra-ui/react'
 
 export type GalleryItem = {
     title?: string
@@ -31,15 +31,15 @@ export default ({ events = [] }: Props) => {
         const fade = new Fade()
         const arrow = new Arrow()
         const pagination = new Pagination({ type: 'scroll' })
-        const play = new AutoPlay()
+        // const play = new AutoPlay()
         const sync = new Sync({
             type: 'camera',
             synchronizedFlickingOptions: [
-                { flicking: panelsRef.current as any, isSlidable: true },
-                { flicking: slidesRef.current as any, isClickable: true, activeClass: 'active' }
+                { flicking: panelsRef.current as any },
+                { flicking: slidesRef.current as any, isClickable: true },
             ]
         })
-        setPlugins([sync, play, arrow, pagination, fade])
+        setPlugins([sync, arrow, pagination, fade])
     }, [])
 
     return (
@@ -48,30 +48,39 @@ export default ({ events = [] }: Props) => {
             bg='black'
             position='relative'
         >
-            <Box flex={1} zIndex={1}>
+            <Box flex={1} zIndex={1} w='100%'>
                 <Flicking
                     ref={panelsRef as any}
                     bound
                     circular
                     bounce={30}
                     panelsPerView={1}
+                    firstPanelSize='100%'
+                    hideBeforeInit
                 >
                     {events.map((event) => (
                         <Box key={event.title}
+                            pb='33dvh'
                             minH='100dvh'
                             backgroundSize='cover'
                             backgroundPosition='center'
-                            backgroundImage={event.image} />
+                            backgroundImage={`linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(30,30,30,1) 75%), url(${event.image})`}>
+                            <Container maxW='container.md' height='100%' justifyContent='center' centerContent>
+                                <Stack color='white' bg='rgba(0,0,0,.5)' p={[4, 6]} >
+                                    <Text as='h2' fontSize='2xl'>{event.title}</Text>
+                                    <Text>{event.text}</Text>
+                                    <Text as='h3' fontSize='xl'>{event.date}</Text>
+                                </Stack>
+                            </Container>
+                        </Box>
                     ))}
                 </Flicking>
             </Box>
-            <Box zIndex={2} position='absolute' top={0} right={0} left={0} bottom={0} height='100%' width='100%'
-                background='linear-gradient(0deg, rgba(30,30,30,1) 25%, rgba(0,0,0,0.2) 100%)'
-            />
             <Box position='absolute'
                 zIndex={3}
                 left={0} right={0} bottom={0}
                 width='100%'
+                height='auto'
                 px={[0]}
                 sx={{ '.flicking-camera': { py: 12 } }}
             >
