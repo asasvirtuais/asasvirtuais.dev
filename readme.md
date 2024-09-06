@@ -19,8 +19,11 @@
 
 Weekly Roadmap:
 
-- [X] List user Credentials
-- [ ] Add UI Elements page to Dashboard
-- [ ] 
+- [X] Dashboard: My Access Credentials
+- [ ] Dashboard: MY UI Components
+    - [ ] Request a new UI component (with AI Chat)
+    - [ ] Configuration tab
+    - [ ] Preview tab
+    - [ ] Preview link
 - [ ] Homepage AI Chat
 - [ ] Dashboard page AI Chat for users
