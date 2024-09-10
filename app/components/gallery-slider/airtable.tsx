@@ -1,5 +1,12 @@
+'use client'
 import type { Attachment } from 'airtable'
-import airtable from '@/app/airtable'
+import type { GalleryItem } from '.'
+
+import { useEffect, useState } from 'react'
+import { Spinner } from '@chakra-ui/react'
+
+import GallerySlider from '.'
+import Airtable from 'airtable'
 
 type Fields = {
     Title: string
@@ -9,17 +16,36 @@ type Fields = {
     Date: string
 }
 
-export async function fetchEvents(base: string, table: string) {
-    const records = await airtable.base(base)<Fields>(table)
-        .select().all()
+export type AirtableGallerySliderProps = {
+    token: string
+    base: string
+    table: string
+}
 
-    const events = records.map(r => ({
-        title: r.get('Title'),
-        image: r.get('Image')[0].url,
-        text: r.get('Description'),
-        link: r.get('Link'),
-        date: (new Date(r.get('Date'))).toLocaleDateString('en-US', { month: 'short', day: '2-digit' }),
-    }))
+export default function AirtableGallerySlider({ token, base, table }: AirtableGallerySliderProps) {
 
-    return events
+    const [items, setItems] = useState<GalleryItem[]>()
+
+    useEffect(() => {
+        if (!token || !base || !table)
+            return
+        new Airtable({ apiKey: token }).base(base)<Fields>(table).select().all()
+            .then(records => records.map(r => ({
+                title: r.get('Title'),
+                image: r.get('Image')[0].url,
+                text: r.get('Description'),
+                link: r.get('Link'),
+                date: (new Date(r.get('Date')))
+                    .toLocaleDateString('en-US', {
+                        month: 'short', day: '2-digit'
+                    }),
+            })))
+            .then(setItems)
+    }, [token, base, table])
+
+    if (!items)
+        return <Spinner />
+
+    return <GallerySlider items={items} />
+
 }

@@ -1,8 +1,5 @@
 import Airtable from 'airtable'
 
-const airtable = new Airtable({
-    apiKey:
-        process.env.AIRTABLE_TOKEN
-})
+const airtable = (apiKey: string) => new Airtable({ apiKey })
 
 export default airtable
