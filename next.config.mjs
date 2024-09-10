@@ -11,7 +11,7 @@ const nextConfig = {
                 destination: '/stories/:path*',
             },
         ]
-    },
+    }
 }
 
 export default nextConfig

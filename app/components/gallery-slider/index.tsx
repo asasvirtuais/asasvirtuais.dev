@@ -7,7 +7,7 @@ import '@egjs/flicking-plugins/dist/pagination.css'
 import Flicking, { Plugin, ViewportSlot } from '@egjs/react-flicking'
 import { Fade, Arrow, Pagination, AutoPlay, Sync } from '@egjs/flicking-plugins'
 import { useEffect, useRef, useState } from 'react'
-import { Box, chakra, Text, Card, CardHeader, Button, CardBody, CardFooter, Link, Badge, Container, Stack } from '@chakra-ui/react'
+import { Box, chakra, Text, Card, CardHeader, CardBody, CardFooter, Link, Badge, Container, Stack, Button, HStack } from '@chakra-ui/react'
 
 export type GalleryItem = {
     title?: string
@@ -17,11 +17,11 @@ export type GalleryItem = {
     date?: string
 }
 
-type Props = {
-    events: GalleryItem[]
+type GallerySliderProps = {
+    items: GalleryItem[]
 }
 
-export default ({ events = [] }: Props) => {
+export default function GallerySlider({ items = [] }: GallerySliderProps) {
     const panelsRef = useRef<Flicking>()
     const slidesRef = useRef<Flicking>()
 
@@ -31,15 +31,15 @@ export default ({ events = [] }: Props) => {
         const fade = new Fade()
         const arrow = new Arrow()
         const pagination = new Pagination({ type: 'scroll' })
-        // const play = new AutoPlay()
+        const play = new AutoPlay()
         const sync = new Sync({
             type: 'camera',
             synchronizedFlickingOptions: [
-                { flicking: panelsRef.current as any },
+                { flicking: panelsRef.current as any, isSlidable: false },
                 { flicking: slidesRef.current as any, isClickable: true },
             ]
         })
-        setPlugins([sync, arrow, pagination, fade])
+        setPlugins([sync, play, arrow, pagination, fade])
     }, [])
 
     return (
@@ -55,10 +55,9 @@ export default ({ events = [] }: Props) => {
                     circular
                     bounce={30}
                     panelsPerView={1}
-                    firstPanelSize='100%'
                     hideBeforeInit
                 >
-                    {events.map((event) => (
+                    {items.map((event) => (
                         <Box key={event.title}
                             pb='33dvh'
                             minH='100dvh'
@@ -69,7 +68,10 @@ export default ({ events = [] }: Props) => {
                                 <Stack color='white' bg='rgba(0,0,0,.5)' p={[4, 6]} >
                                     <Text as='h2' fontSize='2xl'>{event.title}</Text>
                                     <Text>{event.text}</Text>
-                                    <Text as='h3' fontSize='xl'>{event.date}</Text>
+                                    <HStack w='100%' justifyContent='space-between'>
+                                        <Text as='h3' fontSize='xl'>{event.date}</Text>
+                                        <Link href={event.link}><Button>Event page</Button></Link>
+                                    </HStack>
                                 </Stack>
                             </Container>
                         </Box>
@@ -94,9 +96,10 @@ export default ({ events = [] }: Props) => {
                     preventEventsBeforeInit
                     bounce={30}
                 >
-                    {events.map((event) => (
+                    {items.map((event) => (
                         <Box px={1} key={event.title}>
                             <Card
+                                as={Link}
                                 width='300px'
                                 maxH='25dvh'
                                 aspectRatio={1.618}
@@ -105,6 +108,7 @@ export default ({ events = [] }: Props) => {
                                 backgroundSize='cover'
                                 backgroundImage={event.image}
                                 position='relative'
+                                href={event.link}
                             >
                                 <Box position='absolute'
                                     zIndex={2}
