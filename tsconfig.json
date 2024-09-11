@@ -32,8 +32,8 @@
   "include": [
     "./types/globals.d.ts",
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
+    "app/**/*.ts",
+    "app/**/*.tsx",
     ".next/types/**/*.ts"
   ],
   "exclude": [
