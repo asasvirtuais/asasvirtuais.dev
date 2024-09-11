@@ -1,4 +1,4 @@
-import { defineConfig } from './node_modules/vite/dist/node'
+import { defineConfig } from 'vite'
 import preact from '@preact/preset-vite'
 
 export default defineConfig({
