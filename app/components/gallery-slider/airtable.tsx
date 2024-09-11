@@ -1,4 +1,3 @@
-'use client'
 import type { Attachment } from 'airtable'
 import type { GalleryItem } from '.'
 

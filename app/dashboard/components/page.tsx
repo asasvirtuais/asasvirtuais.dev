@@ -7,15 +7,15 @@ const ComponentCard = () => (
     <GridItem as={Card} position='relative'>
         <Button position='absolute' right={0} fontSize='2xl' >⋮</Button>
         <CardHeader textAlign='center'>
-            Events Slider
+            Gallery Slider
         </CardHeader>
 
         <CardBody>
-            Netflix like UI Component
+            Gallery Slider includes panels and navigation slides. Takes images, text, date, and a link.
         </CardBody>
 
         <CardFooter justifyContent='flex-end'>
-            <Link href={`/dashboard/components/netflicker`}>
+            <Link href={`/dashboard/components/gallery-slider`}>
                 <Button variant='outline'>Demo</Button>
             </Link>
         </CardFooter>

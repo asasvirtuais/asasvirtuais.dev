@@ -28,7 +28,6 @@
         "./*"
       ],
     },
-    "forceConsistentCasingInFileNames": true
   },
   "include": [
     "./types/globals.d.ts",

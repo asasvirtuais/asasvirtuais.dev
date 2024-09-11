@@ -10,6 +10,15 @@ const nextConfig = {
                 source: '/stories/:path*',
                 destination: '/stories/:path*',
             },
+            {
+                source: '/bundles/:component',
+                destination: '/components/:component/index.html',
+            },
+            {
+                source: '/bundles/:component*',
+                destination: '/components/:component*',
+            },
+
         ]
     }
 }

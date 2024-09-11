@@ -12,8 +12,6 @@
     "@chakra-ui/next-js": "^2.2.0",
     "@chakra-ui/provider": "^2.4.2",
     "@chakra-ui/react": "^2.8.2",
-    "@egjs/flicking-plugins": "^4.7.1",
-    "@egjs/react-flicking": "^4.11.4",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@vercel/postgres-kysely": "^0.9.0",
@@ -24,8 +22,7 @@
     "next": "14.2.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-icons": "^5.2.1",
-    "react-use": "^17.5.1"
+    "react-icons": "^5.2.1"
   },
   "devDependencies": {
     "@chakra-ui/storybook-addon": "^5.1.0",

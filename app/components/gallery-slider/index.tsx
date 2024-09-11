@@ -1,4 +1,3 @@
-'use client'
 import '@egjs/flicking-plugins/dist/arrow.css'
 import '@egjs/react-flicking/dist/flicking.css'
 import '@egjs/flicking-plugins/dist/arrow.css'
