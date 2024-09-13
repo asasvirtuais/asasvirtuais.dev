@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@babel/plugin-transform-react-jsx-development':
+        specifier: ^7.24.7
+        version: 7.24.7(@babel/core@7.25.2)
       '@chakra-ui/provider':
         specifier: ^2.4.2
         version: 2.4.2(@emotion/react@11.13.3(@types/react@18.3.5)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.5)(react@18.3.1))(@types/react@18.3.5)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)

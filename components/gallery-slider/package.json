@@ -7,6 +7,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
+        "@babel/plugin-transform-react-jsx-development": "^7.24.7",
         "@chakra-ui/provider": "^2.4.2",
         "@chakra-ui/react": "^2.8.2",
         "@egjs/flicking-plugins": "^4.7.1",

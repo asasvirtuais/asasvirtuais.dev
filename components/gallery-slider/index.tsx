@@ -4,7 +4,7 @@ import '@egjs/flicking-plugins/dist/arrow.css'
 import '@egjs/flicking-plugins/dist/pagination.css'
 
 import Flicking, { Plugin, ViewportSlot } from '@egjs/react-flicking'
-import { Fade, Arrow, Pagination, AutoPlay, Sync } from '@egjs/flicking-plugins'
+import { Fade, Arrow, AutoPlay, Sync } from '@egjs/flicking-plugins'
 import { useEffect, useRef, useState } from 'react'
 import { Box, chakra, Text, Card, CardHeader, CardBody, CardFooter, Link, Badge, Container, Stack, Button, HStack } from '@chakra-ui/react'
 
@@ -29,8 +29,7 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
     useEffect(() => {
         const fade = new Fade()
         const arrow = new Arrow()
-        const pagination = new Pagination({ type: 'scroll' })
-        const play = new AutoPlay()
+        const play = new AutoPlay({ duration: 6000 })
         const sync = new Sync({
             type: 'camera',
             synchronizedFlickingOptions: [
@@ -38,7 +37,7 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                 { flicking: slidesRef.current as any, isClickable: true },
             ]
         })
-        setPlugins([sync, play, arrow, pagination, fade])
+        setPlugins([sync, play, arrow, fade])
     }, [])
 
     return (
@@ -63,12 +62,12 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                             backgroundSize='cover'
                             backgroundPosition='center'
                             backgroundImage={`linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(30,30,30,1) 75%), url(${event.image})`}>
-                            <Container maxW='container.md' height='100%' justifyContent='center' centerContent>
-                                <Stack color='white' bg='rgba(0,0,0,.5)' p={[4, 6]} >
-                                    <Text as='h2' fontSize='2xl'>{event.title}</Text>
-                                    <Text>{event.text}</Text>
+                            <Container pl={{ md: '64px' }} pb={{ md: '28px' }} alignItems={{ base: 'center', sm: 'flex-start' }} maxW='full' height='100%' justifyContent='flex-end' centerContent>
+                                <Stack color='white' maxW='sm' bg='rgba(0,0,0,.5)' p={[4, 6]} >
+                                    <Text as='h2'>{event.title}</Text>
+                                    <Text py={4} textAlign='left'>{event.text}</Text>
                                     <HStack w='100%' justifyContent='space-between'>
-                                        <Text as='h3' fontSize='xl'>{event.date}</Text>
+                                        <Text as='h3'>{event.date}</Text>
                                         <Link href={event.link}><Button>Event page</Button></Link>
                                     </HStack>
                                 </Stack>
@@ -83,7 +82,7 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                 width='100%'
                 height='auto'
                 px={[0]}
-                sx={{ '.flicking-camera': { py: 12 } }}
+                sx={{ '.flicking-camera': { py: 4 } }}
             >
                 <Flicking ref={slidesRef as any}
                     bound
@@ -131,13 +130,6 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                         </Box>
                     ))}
                     <ViewportSlot>
-                        <chakra.div sx={{
-                            '.flicking-pagination-bullet': {
-                                height: '24px',
-                                width: '24px',
-                                background: 'white'
-                            }
-                        }} className='flicking-pagination' />
                         <chakra.span sx={{ '::before, ::after': { background: 'white' } }} className='flicking-arrow-prev' />
                         <chakra.span sx={{ '::before, ::after': { background: 'white' } }} className='flicking-arrow-next' />
                     </ViewportSlot>
