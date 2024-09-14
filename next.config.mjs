@@ -11,12 +11,12 @@ const nextConfig = {
                 destination: '/stories/:path*',
             },
             {
-                source: '/bundles/:component',
-                destination: '/components/:component/index.html',
+                source: '/bundles/gallery-slider',
+                destination: '/bundles/gallery-slider/index.html',
             },
             {
-                source: '/bundles/:component*',
-                destination: '/components/:component*',
+                source: '/bundles/gallery-slider/:path*',
+                destination: '/bundles/gallery-slider/:path*',
             },
 
         ]
