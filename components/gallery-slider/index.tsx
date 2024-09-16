@@ -11,6 +11,7 @@ import { Box, chakra, Text, Card, CardHeader, CardBody, CardFooter, Link, Badge,
 export type GalleryItem = {
     title?: string
     image?: string
+    video?: string
     text?: string
     link?: string
     date?: string
@@ -29,12 +30,12 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
     useEffect(() => {
         const fade = new Fade()
         const arrow = new Arrow()
-        const play = new AutoPlay({ duration: 6000 })
+        const play = new AutoPlay({ duration: 9999999, stopOnHover: true })
         const sync = new Sync({
             type: 'camera',
             synchronizedFlickingOptions: [
-                { flicking: panelsRef.current as any, isSlidable: false },
-                { flicking: slidesRef.current as any, isClickable: true },
+                { flicking: panelsRef.current as any, isSlidable: false, isClickable: false },
+                { flicking: slidesRef.current as any, isSlidable: true, isClickable: true },
             ]
         })
         setPlugins([sync, play, arrow, fade])
@@ -46,7 +47,7 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
             bg='black'
             position='relative'
         >
-            <Box flex={1} zIndex={1} w='100%'>
+            <Box flex={1} zIndex={1} w='100%' pointerEvents='none'>
                 <Flicking
                     ref={panelsRef as any}
                     bound
@@ -54,21 +55,46 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                     bounce={30}
                     panelsPerView={1}
                     hideBeforeInit
+                    className='.gallery-slider-panels'
                 >
                     {items.map((event) => (
                         <Box key={event.title}
+                            position='relative'
                             pb='33dvh'
                             minH='100dvh'
                             backgroundSize='cover'
                             backgroundPosition='center'
                             backgroundImage={`linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(30,30,30,1) 75%), url(${event.image})`}>
-                            <Container pl={{ md: '64px' }} pb={{ md: '28px' }} alignItems={{ base: 'center', sm: 'flex-start' }} maxW='full' height='100%' justifyContent='flex-end' centerContent>
-                                <Stack color='white' maxW='sm' bg='rgba(0,0,0,.5)' p={[4, 6]} >
+
+                            {event.video && (
+                                <Box
+                                    zIndex={1}
+                                    w='100%'
+                                    h='100%'
+                                    top={0}
+                                    left={0}
+                                    right={0}
+                                    bottom={0}
+                                    position='absolute'
+                                >
+                                    <chakra.video
+                                        w='100%'
+                                        h='100%'
+                                        objectFit='cover'
+                                        autoPlay
+                                        controls={false}>
+                                        <source src={event.video} type='video/mp4' />
+                                    </chakra.video>
+                                </Box>
+                            )}
+
+                            <Container position='relative' zIndex={2} pl={{ md: '64px' }} pb={{ md: '28px' }} alignItems={{ base: 'center', sm: 'flex-start' }} maxW='full' height='100%' justifyContent='flex-end' centerContent>
+                                <Stack pointerEvents='all' color='white' maxW='sm' bg='rgba(0,0,0,.5)' p={[4, 6]} >
                                     <Text as='h2'>{event.title}</Text>
                                     <Text py={4} textAlign='left'>{event.text}</Text>
                                     <HStack w='100%' justifyContent='space-between'>
-                                        <Text as='h3'>{event.date}</Text>
-                                        <Link href={event.link}><Button>Event page</Button></Link>
+                                        <Text noOfLines={ } as='h3'>{event.date}</Text>
+                                        <Link href={event.link}><Button variant='outline'>Event page</Button></Link>
                                     </HStack>
                                 </Stack>
                             </Container>
@@ -130,11 +156,11 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                         </Box>
                     ))}
                     <ViewportSlot>
-                        <chakra.span sx={{ '::before, ::after': { background: 'white' } }} className='flicking-arrow-prev' />
-                        <chakra.span sx={{ '::before, ::after': { background: 'white' } }} className='flicking-arrow-next' />
+                        <chakra.span sx={{ '::before, ::after': { background: 'white !important' } }} className='flicking-arrow-prev' />
+                        <chakra.span sx={{ '::before, ::after': { background: 'white !important' } }} className='flicking-arrow-next' />
                     </ViewportSlot>
                 </Flicking>
             </Box>
-        </Box>
+        </Box >
     )
 }

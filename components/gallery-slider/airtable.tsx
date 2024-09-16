@@ -2,7 +2,7 @@ import type { Attachment } from 'airtable'
 import type { GalleryItem } from '.'
 
 import { useEffect, useState } from 'react'
-import { Spinner } from '@chakra-ui/react'
+import { Center, Spinner } from '@chakra-ui/react'
 
 import GallerySlider from '.'
 import Airtable from 'airtable'
@@ -31,7 +31,8 @@ export default function AirtableGallerySlider({ token, base, table }: AirtableGa
         new Airtable({ apiKey: token }).base(base)<Fields>(table).select().all()
             .then(records => records.map(r => ({
                 title: r.get('Title'),
-                image: r.get('Image')[0].url,
+                image: r.get('Image')?.[0]?.url,
+                video: r.get('Image')?.[1]?.url,
                 text: r.get('Description'),
                 link: r.get('Link'),
                 date: (new Date(r.get('Date')))
@@ -43,7 +44,11 @@ export default function AirtableGallerySlider({ token, base, table }: AirtableGa
     }, [token, base, table])
 
     if (!items)
-        return <Spinner />
+        return (
+            <Center minW='100dvw' minH='100dvh'>
+                <Spinner />
+            </Center>
+        )
 
     return <GallerySlider items={items} />
 
