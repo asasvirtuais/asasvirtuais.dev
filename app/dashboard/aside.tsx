@@ -20,7 +20,6 @@ const Aside = ({ children, ...props }: GridItemProps) => {
                 base: isMobileOpen ? '100dvw' : '0px',
                 md: '300px'
             }}
-            minH='100dvh'
             position={{
                 base: 'fixed',
                 md: 'relative'

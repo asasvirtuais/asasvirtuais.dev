@@ -25,7 +25,6 @@ export const AppMenu = (props: Omit<StackMenuProps, 'children'>) => (
 export const SideNav = (props: Omit<StackNavProps, 'children'>) => (
     <StackNav {...props}>
         <NavItem href='/dashboard/credentials'>My Access Tokens</NavItem>
-        <NavItem href='/dashboard/components'>My UI Component</NavItem>
     </StackNav>
 )
 export const SideMenu = (props: Omit<StackMenuProps, 'children'>) => (
