@@ -32,9 +32,6 @@ importers:
       airtable:
         specifier: ^0.12.2
         version: 0.12.2
-      babel-plugin-transform-hook-names:
-        specifier: ^1.0.2
-        version: 1.0.2(@babel/core@7.25.2)
       fnts:
         specifier: ^3.0.1
         version: 3.0.1(typescript@5.6.2)
@@ -2424,11 +2421,6 @@ packages:
     resolution: {integrity: sha512-2R25rQZWP63nGwaAswvDazbPXfrM3HwVoBXK6HcqeKrSrL/JqcC/rDcf95l4r7LXLyxDXc8uQDa064GubtCABg==}
     peerDependencies:
       '@babel/core': ^7.4.0 || ^8.0.0-0 <8.0.0
-
-  babel-plugin-transform-hook-names@1.0.2:
-    resolution: {integrity: sha512-5gafyjyyBTTdX/tQQ0hRgu4AhNHG/hqWi0ZZmg2xvs2FgRkJXzDNKBZCyoYqgFkovfDrgM8OoKg8karoUvWeCw==}
-    peerDependencies:
-      '@babel/core': ^7.12.10
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -7913,10 +7905,6 @@ snapshots:
       '@babel/helper-define-polyfill-provider': 0.6.2(@babel/core@7.25.2)
     transitivePeerDependencies:
       - supports-color
-
-  babel-plugin-transform-hook-names@1.0.2(@babel/core@7.25.2):
-    dependencies:
-      '@babel/core': 7.25.2
 
   balanced-match@1.0.2: {}
 
