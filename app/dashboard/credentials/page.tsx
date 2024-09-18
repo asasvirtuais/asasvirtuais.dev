@@ -1,5 +1,5 @@
 
-import { Input, List, ListItem, Stack } from '@chakra-ui/react'
+import { Box, Input, List, ListItem, Stack } from '@chakra-ui/react'
 import { Text } from '@chakra-ui/react'
 
 import { getByUser } from '@/app/oauth/credentials'
@@ -13,7 +13,7 @@ export default async function () {
     const user = await userOrLogin('/dashboard/credentials')
     const credentials = await getByUser(user.sub)
     return (
-        <>
+        <Box p={6}>
             <Breadcrumbs base='/dashboard'
                 crumbs={[['Access Tokens', '/dashboard/credentials']]}
             />
@@ -56,7 +56,7 @@ export default async function () {
                     </ListItem>
                 ))}
             </StackList>
-        </>
+        </Box>
 
     )
 }

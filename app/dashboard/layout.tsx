@@ -53,7 +53,7 @@ export default async function DashboardLayout({ children }: PropsWithChildren) {
 
             <Main colStart={2} colEnd={3} bg='#F4F4F4'
                 justifyContent='center' alignItems='flex-start'
-                maxW='100%' overflow='hidden' py={6} px={6}>
+                maxW='100%' overflow='hidden'>
                 {children}
             </Main>
 
