@@ -10,6 +10,7 @@ import Airtable from 'airtable'
 type Fields = {
     Title: string
     Image: Attachment[]
+    Video: Attachment[]
     Description: string
     Link: string
     Date: string
@@ -32,7 +33,7 @@ export default function AirtableGallerySlider({ token, base, table }: AirtableGa
             .then(records => records.map(r => ({
                 title: r.get('Title'),
                 image: r.get('Image')?.[0]?.url,
-                video: r.get('Image')?.[1]?.url,
+                video: r.get('Video')?.[0]?.url,
                 text: r.get('Description'),
                 link: r.get('Link'),
                 date: (new Date(r.get('Date')))
@@ -42,6 +43,8 @@ export default function AirtableGallerySlider({ token, base, table }: AirtableGa
             })))
             .then(setItems)
     }, [token, base, table])
+
+    console.log(items)
 
     if (!items)
         return (

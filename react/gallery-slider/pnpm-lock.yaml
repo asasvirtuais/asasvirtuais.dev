@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@babel/plugin-transform-react-jsx-development':
-        specifier: ^7.24.7
-        version: 7.24.7(@babel/core@7.25.2)
       '@chakra-ui/provider':
         specifier: ^2.4.2
         version: 2.4.2(@emotion/react@11.13.3(@types/react@18.3.5)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.5)(react@18.3.1))(@types/react@18.3.5)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -45,6 +42,9 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
     devDependencies:
+      '@babel/plugin-transform-react-jsx-development':
+        specifier: ^7.24.7
+        version: 7.24.7(@babel/core@7.25.2)
       '@preact/preset-vite':
         specifier: ^2.9.0
         version: 2.9.0(@babel/core@7.25.2)(preact@10.23.2)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))
@@ -57,6 +57,9 @@ importers:
       '@vitejs/plugin-react-swc':
         specifier: ^3.7.0
         version: 3.7.0(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))
+      babel-plugin-transform-hook-names:
+        specifier: ^1.0.2
+        version: 1.0.2(@babel/core@7.25.2)
       globals:
         specifier: ^15.9.0
         version: 15.9.0

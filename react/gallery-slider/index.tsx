@@ -60,15 +60,20 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                     {items.map((event) => (
                         <Box key={event.title}
                             position='relative'
-                            pb='33dvh'
+                            pb='30dvh'
                             minH='100dvh'
                             backgroundSize='cover'
                             backgroundPosition='center'
-                            backgroundImage={`linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(30,30,30,1) 75%), url(${event.image})`}>
+                            backgroundImage={`url(${event.image})`}>
+
+                            <Box position='absolute' top={0} left={0} right={0} bottom={0} zIndex={3} 
+                            background='linear-gradient(to bottom, rgba(0,0,0,0.30) 0%, rgba(0, 0, 0, .30) 60%, rgba(0, 0, 0, 1) 75%)'
+                            
+                            />
 
                             {event.video && (
                                 <Box
-                                    zIndex={1}
+                                    zIndex={2}
                                     w='100%'
                                     h='100%'
                                     top={0}
@@ -82,19 +87,36 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                                         h='100%'
                                         objectFit='cover'
                                         autoPlay
+                                        loop
+                                        muted
                                         controls={false}>
                                         <source src={event.video} type='video/mp4' />
                                     </chakra.video>
                                 </Box>
                             )}
 
-                            <Container position='relative' zIndex={2} pl={{ md: '64px' }} pb={{ md: '28px' }} alignItems={{ base: 'center', sm: 'flex-start' }} maxW='full' height='100%' justifyContent='flex-end' centerContent>
-                                <Stack pointerEvents='all' color='white' maxW='sm' bg='rgba(0,0,0,.5)' p={[4, 6]} >
-                                    <Text as='h2'>{event.title}</Text>
-                                    <Text py={4} textAlign='left'>{event.text}</Text>
+                            <Container
+                                position='relative'
+                                zIndex={4}
+                                pl={{ md: '64px' }}
+                                pb={0}
+                                alignItems={{ base: 'center', sm: 'flex-start' }}
+                                maxW='full'
+                                height='100%'
+                                justifyContent='flex-end'
+                                centerContent>
+                                <Stack pointerEvents='all' color='white' maxW='sm' p={[4, 6]} >
+                                    <Text as='h2' textShadow='4px 4px 4px black'>{event.title}</Text>
+                                    <Text pb={8} textAlign='left'
+                                        textShadow='4px 4px 4px black' fontSize='18px'>{event.text}</Text>
                                     <HStack w='100%' justifyContent='space-between'>
-                                        <Text noOfLines={ } as='h3'>{event.date}</Text>
-                                        <Link href={event.link}><Button variant='outline'>Event page</Button></Link>
+                                        <Text as='h3'>{event.date}</Text>
+                                        <Link href={event.link}><Button variant='outline'
+                                        borderRadius={0} borderWidth={2} color='white'
+                                        _hover={{color: 'black', bg: 'white'}}
+                                        _active={{bg: '#CCC'}}
+                                        boxShadow='0px 4px 12px 2px rgba(0, 0, 0, 0.4)'
+                                        >Event page</Button></Link>
                                     </HStack>
                                 </Stack>
                             </Container>
@@ -141,7 +163,7 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                                     background='rgba(0,0,0,0.5)'>
                                     <CardHeader w='full'>
                                         <chakra.h3 color='white' fontWeight='bold'
-                                            fontSize='lg'
+                                            fontSize='lg' textShadow='2px 2px 2px black'
                                         >{event.title}</chakra.h3>
                                     </CardHeader>
                                 </Box>
@@ -149,15 +171,15 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                                 </CardBody>
                                 <CardFooter zIndex={2} justifyContent='space-between' alignItems='center'>
                                     {event.date && (
-                                        <Badge size='sm' color='white' variant='outline' borderColor='white' >{event.date}</Badge>
+                                        <Badge boxShadow='none' size='sm' color='white' variant='outline' borderColor='white' >{event.date}</Badge>
                                     )}
                                 </CardFooter>
                             </Card>
                         </Box>
                     ))}
                     <ViewportSlot>
-                        <chakra.span sx={{ '::before, ::after': { background: 'white !important' } }} className='flicking-arrow-prev' />
-                        <chakra.span sx={{ '::before, ::after': { background: 'white !important' } }} className='flicking-arrow-next' />
+                        <chakra.span opacity={.45} _hover={{opacity: 1}} sx={{ '::before, ::after': { background: 'white !important' } }} className='flicking-arrow-prev' />
+                        <chakra.span opacity={.45} _hover={{opacity: 1}} sx={{ '::before, ::after': { background: 'white !important' } }} className='flicking-arrow-next' />
                     </ViewportSlot>
                 </Flicking>
             </Box>
