@@ -61,14 +61,14 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                         <Box key={event.title}
                             position='relative'
                             pb='30dvh'
-                            minH='100dvh'
+                            minH={{ base: '130dvh', md: '100dvh' }}
                             backgroundSize='cover'
                             backgroundPosition='center'
                             backgroundImage={`url(${event.image})`}>
 
-                            <Box position='absolute' top={0} left={0} right={0} bottom={0} zIndex={3} 
-                            background='linear-gradient(to bottom, rgba(0,0,0,0.30) 0%, rgba(0, 0, 0, .30) 60%, rgba(0, 0, 0, 1) 75%)'
-                            
+                            <Box position='absolute' top={0} left={0} right={0} bottom={0} zIndex={3}
+                                background='linear-gradient(to bottom, rgba(0,0,0,0.30) 0%, rgba(0, 0, 0, .30) 60%, rgba(0, 0, 0, 1) 75%)'
+
                             />
 
                             {event.video && (
@@ -112,10 +112,10 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                                     <HStack w='100%' justifyContent='space-between'>
                                         <Text as='h3'>{event.date}</Text>
                                         <Link href={event.link}><Button variant='outline'
-                                        borderRadius={0} borderWidth={2} color='white'
-                                        _hover={{color: 'black', bg: 'white'}}
-                                        _active={{bg: '#CCC'}}
-                                        boxShadow='0px 4px 12px 2px rgba(0, 0, 0, 0.4)'
+                                            borderRadius={0} borderWidth={2} color='white'
+                                            _hover={{ color: 'black', bg: 'white' }}
+                                            _active={{ bg: '#CCC' }}
+                                            boxShadow='0px 4px 12px 2px rgba(0, 0, 0, 0.4)'
                                         >Event page</Button></Link>
                                     </HStack>
                                 </Stack>
@@ -178,8 +178,8 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                         </Box>
                     ))}
                     <ViewportSlot>
-                        <chakra.span opacity={.45} _hover={{opacity: 1}} sx={{ '::before, ::after': { background: 'white !important' } }} className='flicking-arrow-prev' />
-                        <chakra.span opacity={.45} _hover={{opacity: 1}} sx={{ '::before, ::after': { background: 'white !important' } }} className='flicking-arrow-next' />
+                        <chakra.span opacity={.45} _hover={{ opacity: 1 }} sx={{ '::before, ::after': { background: 'white !important' } }} className='flicking-arrow-prev' />
+                        <chakra.span opacity={.45} _hover={{ opacity: 1 }} sx={{ '::before, ::after': { background: 'white !important' } }} className='flicking-arrow-next' />
                     </ViewportSlot>
                 </Flicking>
             </Box>
