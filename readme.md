@@ -15,15 +15,12 @@
 
 ### Features
 - Logo Generator
-- OAuth access token management
+- Access Token management
 
 Weekly Roadmap:
 
-- [X] Dashboard: My Access Credentials
-- [ ] Dashboard: MY UI Components
-    - [ ] Request a new UI component (with AI Chat)
-    - [ ] Configuration tab
-    - [ ] Preview tab
-    - [ ] Preview link
-- [ ] Homepage AI Chat
-- [ ] Dashboard page AI Chat for users
+- [ ] Table conversas
+- [ ] Table mensagens
+- [ ] Conversa UI
+- [ ] Mensagem form
+- [ ] Dashboard AI Chat
