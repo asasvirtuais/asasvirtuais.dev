@@ -6,7 +6,7 @@ import '@egjs/flicking-plugins/dist/pagination.css'
 import Flicking, { Plugin, ViewportSlot } from '@egjs/react-flicking'
 import { Fade, Arrow, AutoPlay, Sync } from '@egjs/flicking-plugins'
 import { useEffect, useRef, useState } from 'react'
-import { Box, chakra, Text, Card, CardHeader, CardBody, CardFooter, Link, Badge, Container, Stack, Button, HStack } from '@chakra-ui/react'
+import { Box, chakra, Text, Card, CardHeader, CardBody, CardFooter, Link, Badge, Container, Stack, Button, HStack, useBreakpointValue } from '@chakra-ui/react'
 
 export type GalleryItem = {
     title?: string
@@ -60,8 +60,8 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                     {items.map((event) => (
                         <Box key={event.title}
                             position='relative'
-                            pb='30dvh'
-                            minH={{ base: '130dvh', md: '100dvh' }}
+                            pb={['80px', '25dvh']}
+                            minH='100dvh'
                             backgroundSize='cover'
                             backgroundPosition='center'
                             backgroundImage={`url(${event.image})`}>
@@ -98,16 +98,15 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                             <Container
                                 position='relative'
                                 zIndex={4}
-                                pl={{ md: '64px' }}
-                                pb={0}
+                                pb={[8, 0]}
                                 alignItems={{ base: 'center', sm: 'flex-start' }}
                                 maxW='full'
                                 height='100%'
                                 justifyContent='flex-end'
                                 centerContent>
-                                <Stack pointerEvents='all' color='white' maxW='sm' p={[4, 6]} >
+                                <Stack pointerEvents='all' color='white' maxW='sm' p={[4, 6]} spacing={0}>
                                     <Text as='h2' textShadow='4px 4px 4px black'>{event.title}</Text>
-                                    <Text pb={8} textAlign='left'
+                                    <Text pb={6} textAlign='left'
                                         textShadow='4px 4px 4px black' fontSize='18px'>{event.text}</Text>
                                     <HStack w='100%' justifyContent='space-between'>
                                         <Text as='h3'>{event.date}</Text>
@@ -130,7 +129,7 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                 width='100%'
                 height='auto'
                 px={[0]}
-                sx={{ '.flicking-camera': { py: 4 } }}
+                sx={{ '.flicking-camera': { py: 4, boxSizing: ['border-box'], height: ['112px', '25dvh'] } }}
             >
                 <Flicking ref={slidesRef as any}
                     bound
@@ -141,13 +140,18 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                     preventDefaultOnDrag
                     preventEventsBeforeInit
                     bounce={30}
+                    align='center'
                 >
                     {items.map((event) => (
-                        <Box px={1} key={event.title}>
+                        <Box px={1} key={event.title}
+                            width='300px'
+                            maxW='50dvw'
+                            height='full'
+                        >
                             <Card
                                 as={Link}
-                                width='300px'
-                                maxH='25dvh'
+                                w='full'
+                                h='full'
                                 aspectRatio={1.618}
                                 maxWidth='100dvw'
                                 cursor='pointer'
@@ -155,13 +159,14 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                                 backgroundImage={event.image}
                                 position='relative'
                                 href={event.link}
+                                mx='auto'
                             >
                                 <Box position='absolute'
                                     zIndex={2}
                                     top={0} width={0} right={0} left={0}
                                     w='100%' h='100%'
                                     background='rgba(0,0,0,0.5)'>
-                                    <CardHeader w='full'>
+                                    <CardHeader w='full' hideBelow='sm'>
                                         <chakra.h3 color='white' fontWeight='bold'
                                             fontSize='lg' textShadow='2px 2px 2px black'
                                         >{event.title}</chakra.h3>
@@ -169,7 +174,7 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                                 </Box>
                                 <CardBody>
                                 </CardBody>
-                                <CardFooter zIndex={2} justifyContent='space-between' alignItems='center'>
+                                <CardFooter hideBelow='sm' zIndex={2} justifyContent='space-between' alignItems='center'>
                                     {event.date && (
                                         <Badge boxShadow='none' size='sm' color='white' variant='outline' borderColor='white' >{event.date}</Badge>
                                     )}
@@ -178,8 +183,8 @@ export default function GallerySlider({ items = [] }: GallerySliderProps) {
                         </Box>
                     ))}
                     <ViewportSlot>
-                        <chakra.span opacity={.45} _hover={{ opacity: 1 }} sx={{ '::before, ::after': { background: 'white !important' } }} className='flicking-arrow-prev' />
-                        <chakra.span opacity={.45} _hover={{ opacity: 1 }} sx={{ '::before, ::after': { background: 'white !important' } }} className='flicking-arrow-next' />
+                        <chakra.span opacity={.45} height='40px' width='20px' left={4} _hover={{ opacity: 1 }} sx={{ '::before, ::after': { background: 'white !important', left: 0 } }} className='flicking-arrow-prev is-thin' />
+                        <chakra.span opacity={.45} height='40px' width='20px' right={4} _hover={{ opacity: 1 }} sx={{ '::before, ::after': { background: 'white !important', right: 0 } }} className='flicking-arrow-next is-thin' />
                     </ViewportSlot>
                 </Flicking>
             </Box>
