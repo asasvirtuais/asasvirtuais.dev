@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@chakra-ui/storybook-addon": "^5.1.0",
-    "@chromatic-com/storybook": "^1.8.0",
+    "@chromatic-com/storybook": "^2.0.2",
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/addon-interactions": "^8.2.9",
     "@storybook/addon-links": "^8.2.9",
